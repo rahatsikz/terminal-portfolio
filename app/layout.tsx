@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@your-twitter-handle", // Replace with your Twitter handle
     creator: "@your-twitter-handle", // Replace with your Twitter handle
-    title: "Rahat's Portfolio - Web Developer | Full-Stack Projects",
+    title: "Rahat's Portfolio | Full Stack Developer",
     description:
       "Explore Rahat's web development portfolio featuring full-stack projects with React, Next.js, Node.js, and PostgreSQL.",
     // image: "https://your-website-url.com/og-image.jpg", // Replace with the URL to your image
