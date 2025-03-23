@@ -42,7 +42,7 @@ export default function HomeSection() {
         </p>
 
         <p className='text-gray-400 text-sm italic lg:px-4 px-2 mt-2'>
-          Type &apos;about&apos; to know more about me or &apos;help&apos; to
+          Type &apos;cd about&apos; to know more about me or &apos;help&apos; to
           see available commands
         </p>
       </div>

@@ -63,7 +63,7 @@ export default function AboutSection() {
       </div>
 
       <p className='text-gray-400 text-sm italic mt-6'>
-        Type &apos;skills&apos; to see my technical expertise or
+        Type &apos;cd skills&apos; to see my technical expertise or
         &apos;projects&apos; to view my work.
       </p>
     </motion.div>

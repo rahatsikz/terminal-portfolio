@@ -101,7 +101,7 @@ i7j8k9l 🛡️ Added middleware for enhanced security in Red UI Site`}
       </div>
 
       <p className='text-gray-400 text-sm italic'>
-        Type &apos;contact&apos; to get in touch about collaboration
+        Type &apos;cd contact&apos; to get in touch about collaboration
         opportunities.
       </p>
     </motion.div>
