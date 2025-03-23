@@ -19,8 +19,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahat's Portfolio",
-  description: "Made with Next.js",
+  title: "Rahat's Portfolio - Web Developer | Frontend & Backend Projects",
+  description:
+    "Explore the portfolio of Rahat, a skilled full-stack web developer showcasing innovative frontend and backend projects using React, Next.js, Node.js, PostgreSQL, and more.",
+  openGraph: {
+    title: "Rahat's Portfolio - Web Developer | Full-Stack Projects",
+    description:
+      "Explore the portfolio of Rahat, featuring full-stack web development projects with cutting-edge technologies like React, Next.js, Node.js, and PostgreSQL.",
+    url: "https://rahatsikder.com", // Replace with your website's URL
+    siteName: "Rahat's Portfolio",
+    images: [
+      {
+        url: "/public/profile.jpg", // Replace with a path to a relevant image for social media
+        width: 1200,
+        height: 630,
+        alt: "Rahat's Portfolio",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@your-twitter-handle", // Replace with your Twitter handle
+    creator: "@your-twitter-handle", // Replace with your Twitter handle
+    title: "Rahat's Portfolio - Web Developer | Full-Stack Projects",
+    description:
+      "Explore Rahat's web development portfolio featuring full-stack projects with React, Next.js, Node.js, and PostgreSQL.",
+    // image: "https://your-website-url.com/og-image.jpg", // Replace with the URL to your image
+  },
+  keywords:
+    "Rahat, Portfolio, Web Developer, Full Stack Developer, React, Next.js, Node.js, PostgreSQL, Frontend, Backend, JavaScript, TypeScript, Web Development",
+  robots: "index, follow",
 };
 
 export default function RootLayout({
