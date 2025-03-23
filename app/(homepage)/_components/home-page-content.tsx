@@ -9,6 +9,11 @@ import TerminalPrompt from "./terminal-prompt";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { dummyData, renderTabContent } from "./abstract-tab-content";
 import { tabs } from "@/data";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Terminal() {
   const [activeTab, setActiveTab] = useState("home");
@@ -22,7 +27,7 @@ export default function Terminal() {
   const terminalRef = useRef<HTMLDivElement>(null);
   const terminalPromptRef = useRef<{ focusInput: () => void } | null>(null);
 
-  const commandActions: Record<string, () => void> = {
+  const commandActions: Record<string, (args?: string) => void> = {
     help: () =>
       setCurrentOutput(
         <div className='text-green-400 mt-2'>
@@ -32,14 +37,34 @@ export default function Terminal() {
           <p>- projects: See my portfolio projects</p>
           <p>- contact: Get my contact information</p>
           <p>- clear: Clear the terminal</p>
+          <p>- cd [tab]: Navigate to a tab</p>
+          <p>- ls: List available tabs</p>
           <p>- help: Show this help message</p>
         </div>
       ),
-    home: () => handleTabChange("home"),
-    about: () => handleTabChange("about"),
-    skills: () => handleTabChange("skills"),
-    projects: () => handleTabChange("projects"),
-    contact: () => handleTabChange("contact"),
+    ls: () =>
+      setCurrentOutput(
+        <div className='text-green-400 mt-2 flex items-center gap-x-4 h-fit'>
+          {tabs.map((tab) => (
+            <p key={tab}>{tab}</p>
+          ))}
+        </div>
+      ),
+    cd: (args) => {
+      if (!args) {
+        setError(<p className='text-red-400 mt-0.5'>Missing path.</p>);
+        return;
+      }
+
+      if (tabs.includes(args)) {
+        setActiveTab(args);
+        handleTabChange(args);
+      } else {
+        setError(
+          <p className='text-red-400 mt-0.5'>No such directory: {args}</p>
+        );
+      }
+    },
     clear: () => {
       setCommandHistory([]);
       setCurrentOutput(null);
@@ -52,14 +77,13 @@ export default function Terminal() {
   };
 
   const handleCommand = (command: string) => {
-    const cmd = command.toLowerCase().trim();
-
-    if (command === "help" && commandActions[cmd]) {
-      commandActions[cmd]();
+    const [cmd, ...args] = command.toLowerCase().trim().split(/\s+/);
+    if (command === "help" || command === "ls") {
       setCommandHistory((prev) => [...prev, command]);
+      commandActions[cmd](args.join(" "));
       setError(null);
     } else if (commandActions[cmd]) {
-      commandActions[cmd]();
+      commandActions[cmd](args.join(" "));
       setError(null);
     } else {
       setError(
@@ -108,41 +132,92 @@ export default function Terminal() {
   const TerminalHeader = () => (
     <div className='bg-gray-800 px-4 py-2 flex items-center justify-between'>
       <div className='flex items-center gap-2'>
-        <div className='h-3 w-3 rounded-full bg-red-500'></div>
-        <div className='h-3 w-3 rounded-full bg-yellow-500'></div>
-        <div className='h-3 w-3 rounded-full bg-green-500'></div>
+        {/* Close */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div
+              className='h-3 w-3 rounded-full bg-red-500 cursor-pointer'
+              onClick={() => console.log("Close window")} // Replace with actual close logic
+            />
+          </TooltipTrigger>
+          <TooltipContent>Close</TooltipContent>
+        </Tooltip>
+
+        {/* Minimize */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div
+              className='h-3 w-3 rounded-full bg-yellow-500 cursor-pointer'
+              onClick={() => setIsMinimized(true)}
+            />
+          </TooltipTrigger>
+          <TooltipContent>Minimize</TooltipContent>
+        </Tooltip>
+
+        {/* Fullscreen */}
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div
+              className='h-3 w-3 rounded-full bg-green-500 cursor-pointer'
+              onClick={() => setIsFullscreen(!isFullscreen)}
+            />
+          </TooltipTrigger>
+          <TooltipContent>
+            {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          </TooltipContent>
+        </Tooltip>
       </div>
+
       <div className='text-gray-300 font-mono text-xs lg:text-sm whitespace-nowrap'>
         rahat@portfolio ~{activeTab !== "home" ? `/${activeTab}` : ""}
       </div>
       <div className='flex items-center gap-2'>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='h-6 w-6 text-gray-400 hover:text-amber-200 hover:bg-amber-500/10'
-          onClick={() => setIsMinimized(true)}
-        >
-          <Minus className='h-4 w-4' />
-        </Button>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='h-6 w-6 text-gray-400 hover:text-green-400 hover:bg-green-500/10'
-          onClick={() => setIsFullscreen(!isFullscreen)}
-        >
-          {isFullscreen ? (
-            <Minimize2 className='h-4 w-4' />
-          ) : (
-            <Square className='h-4 w-4' />
-          )}
-        </Button>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='h-6 w-6 text-gray-400  hover:bg-red-500/10 hover:text-red-400'
-        >
-          <X className='h-4 w-4' />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-6 w-6 text-gray-400 hover:text-amber-200 hover:bg-amber-500/10'
+              onClick={() => setIsMinimized(true)}
+            >
+              <Minus className='h-4 w-4' />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Minimize</TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-6 w-6 text-gray-400  hover:text-green-400 hover:bg-green-500/10'
+              onClick={() => setIsFullscreen(!isFullscreen)}
+            >
+              {isFullscreen ? (
+                <Minimize2 className='h-4 w-4' />
+              ) : (
+                <Square className='h-4 w-4' />
+              )}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+          </TooltipContent>
+        </Tooltip>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant='ghost'
+              size='icon'
+              className='h-6 w-6 text-gray-400 hover:bg-red-500/10 hover:text-red-400'
+            >
+              <X className='h-4 w-4' />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Close</TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );
@@ -186,7 +261,7 @@ export default function Terminal() {
         <ScrollArea
           className={cn(
             "space-y-2 py-1.5 h-[46px] ",
-            commandHistory.length && "h-40"
+            commandHistory.length && "h-24"
           )}
         >
           <TerminalPrompt ref={terminalPromptRef} onCommand={handleCommand} />
