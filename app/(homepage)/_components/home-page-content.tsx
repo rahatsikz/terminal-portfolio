@@ -32,12 +32,12 @@ export default function Terminal() {
       setCurrentOutput(
         <div className='text-green-400 mt-2'>
           <p>Available commands:</p>
-          <p>- about: Learn about me</p>
-          <p>- skills: View my technical skills</p>
-          <p>- projects: See my portfolio projects</p>
-          <p>- contact: Get my contact information</p>
-          <p>- clear: Clear the terminal</p>
+          {/* <p>- cd about: Learn about me</p> */}
+          {/* <p>- cd skills: View my technical skills</p> */}
+          {/* <p>- cd projects: See my portfolio projects</p> */}
+          {/* <p>- cd contact: Get my contact information</p> */}
           <p>- cd [tab]: Navigate to a tab</p>
+          <p>- clear: Clear the terminal</p>
           <p>- ls: List available tabs</p>
           <p>- help: Show this help message</p>
         </div>

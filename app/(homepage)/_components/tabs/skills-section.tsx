@@ -107,8 +107,8 @@ export default function SkillsSection() {
       </div>
 
       <p className='text-gray-400 text-sm italic'>
-        Type &apos;cd projects&apos; to see examples of my work or
-        &apos;contact&apos; to get in touch.
+        Type &apos;cd projects&apos; to see examples of my work or &apos;cd
+        contact&apos; to get in touch.
       </p>
     </motion.div>
   );
