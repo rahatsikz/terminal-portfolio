@@ -5,7 +5,7 @@ import React from "react";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 export default function HomeSection() {
-  const isTablet = useMediaQuery("(min-width: 540px)");
+  const isTablet = useMediaQuery("(min-width: 768px)");
 
   return (
     <div className='flex flex-col gap-4 h-full py-2'>
