@@ -1,5 +1,5 @@
 import React from "react";
-import Terminal from "./_components/home-page-content";
+import Terminal from "./_components/terminal";
 
 export default function Homepage() {
   return <Terminal />;

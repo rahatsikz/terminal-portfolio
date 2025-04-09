@@ -40,6 +40,7 @@ export default function Terminal() {
           <p>- clear: Clear the terminal</p>
           <p>- ls: List available tabs</p>
           <p>- help: Show this help message</p>
+          <p>- exit: Close the terminal tab</p>
         </div>
       ),
     ls: () =>
@@ -69,6 +70,14 @@ export default function Terminal() {
       setCommandHistory([]);
       setCurrentOutput(null);
       setError(null);
+    },
+    exit: () => {
+      setCurrentOutput(
+        <p className='text-green-400 mt-2'>Closing the tab...</p>
+      );
+      setTimeout(() => {
+        window.close();
+      }, 1000);
     },
     "": () => {
       setCurrentOutput(null);
