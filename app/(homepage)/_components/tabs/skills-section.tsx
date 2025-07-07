@@ -75,7 +75,7 @@ export default function SkillsSection() {
           Frontend Development
         </h3>
         {/* <div className='flex flex-wrap gap-3 md:gap-5'> */}
-        <div className='grid grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
+        <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
           {frontendIcons.map(({ Icon, name }) => (
             <div
               key={name}
@@ -96,7 +96,7 @@ export default function SkillsSection() {
           Backend Development
         </h3>
         {/* <div className='flex flex-wrap gap-5'> */}
-        <div className='grid grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
+        <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
           {backendIcons.map(({ Icon, name }) => (
             <div
               key={name}
