@@ -45,7 +45,7 @@ export default function Terminal() {
       ),
     ls: () =>
       setCurrentOutput(
-        <div className='text-green-400 mt-2 flex items-center gap-x-4 h-fit'>
+        <div className='text-green-400 mt-2 flex flex-wrap items-center gap-x-4 h-fit'>
           {tabs.map((tab) => (
             <p key={tab}>{tab}</p>
           ))}
