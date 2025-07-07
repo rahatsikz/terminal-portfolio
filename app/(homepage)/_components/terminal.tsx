@@ -289,9 +289,10 @@ export default function Terminal() {
       </div>
 
       <ScrollArea
+        key={activeTab}
         className={cn(
           "h-[425px] pt-1 pb-5 px-3.5",
-          isFullscreen ? "h-[calc(100vh-10rem)]" : "h-[360px]"
+          isFullscreen ? "h-[calc(100vh-10rem)]" : "h-[390px]"
         )}
       >
         {/* Terminal Content */}

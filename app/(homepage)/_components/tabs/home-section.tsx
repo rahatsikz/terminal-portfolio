@@ -8,7 +8,7 @@ export default function HomeSection() {
   const isTablet = useMediaQuery("(min-width: 768px)");
 
   return (
-    <div className='flex flex-col gap-4 h-full py-2'>
+    <div className='flex flex-col gap-0 h-full'>
       <motion.div
         // Initial & animate states for fade-in
         initial={{ opacity: 0 }}
@@ -45,16 +45,45 @@ export default function HomeSection() {
         />
       </motion.div>
 
-      <div>
-        <p className='text-white mt-4 lg:px-5 px-2.5 text-[15px]'>
-          Hi, Myself Rahat, a Full Stack Developer... Welcome to my
-          Terminal-themed Portfolio!
+      <div className=' text-gray-300'>
+        <div className='text-gray-300 mt-4 space-y-2 text-[15px]'>
+          <p>👋 Hello there!</p>
+          <p>
+            I&apos;m Rahat, a Full Stack Developer specializing in building
+            modern, responsive and scalable web apps using React, Next.js,
+            Express.js and PostgreSQL.
+          </p>
+        </div>
+        <ul className='space-y-1.5 mt-5'>
+          <li>
+            💡 Passionate about solving real problems, simplifying complex
+            systems, and building clean, accessible UIs with performance in
+            mind.
+          </li>
+          <li>
+            🧠 Diagnosed with Bipolar Affective Disorder — but I code through
+            the chaos. Resilience isn&apos;t optional; it&apos;s embedded in my
+            commits.
+          </li>
+          <li>
+            💼 Currently looking for remote frontend roles, collaboration
+            opportunities, or small freelance gigs.
+          </li>
+        </ul>
+        <ul className='space-y-1.5 mt-5'>
+          <li>🔍 Type &apos;cd about&apos; to learn more about my journey.</li>
+          <li>💻 Type &apos;cd projects&apos; to view my latest work.</li>
+          <li> 📨 Type &apos;cd contact&apos; if you want to get in touch.</li>
+          <li>❓ Type &apos;help&apos; to list all commands.</li>
+        </ul>
+        <p className='mt-4 text-green-400 italic'>
+          # Code is my craft. Story is my superpower.
         </p>
 
-        <p className='text-gray-400 text-sm italic lg:px-4 px-2 mt-2'>
+        {/* <p className='text-gray-400 text-sm italic lg:px-4 px-2 mt-2'>
           Type &apos;cd about&apos; to know more about me or &apos;help&apos; to
           see available commands
-        </p>
+        </p> */}
       </div>
     </div>
   );

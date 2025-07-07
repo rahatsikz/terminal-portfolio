@@ -21,6 +21,8 @@ const TerminalPrompt = forwardRef<
 >(({ onCommand, ...props }, ref) => {
   const [command, setCommand] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const promptRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +51,7 @@ const TerminalPrompt = forwardRef<
 
   // Blinking cursor effect
   useEffect(() => {
+    // setCursorVisible(true);
     const interval = setInterval(() => {
       setCursorVisible((prev) => !prev);
     }, 500);
@@ -75,13 +78,15 @@ const TerminalPrompt = forwardRef<
           ref={inputRef}
           type='text'
           value={command}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           onChange={(e) => setCommand(e.target.value)}
           className='w-full bg-transparent outline-none caret-transparent opacity-0'
           aria-label='Terminal command input'
         />
         <div
           className={cn(
-            "absolute left-0 -top-[1px] pointer-events-none text-background"
+            "absolute left-0 -top-[1px] pointer-events-none text-background whitespace-pre"
             // command.length ? "top-0" : "top-0.5"
           )}
           aria-hidden='true'
@@ -90,7 +95,7 @@ const TerminalPrompt = forwardRef<
           <span
             className={cn(
               "inline-block w-0.5 h-3.5 top-1.5 absolute bg-green-400",
-              cursorVisible ? "opacity-100" : "opacity-0"
+              isFocused && cursorVisible ? "opacity-100" : "opacity-0"
             )}
           ></span>
         </div>

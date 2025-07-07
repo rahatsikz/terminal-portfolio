@@ -5,9 +5,41 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-import { Facebook, Github, Mail, XIcon } from "@/assets/svg/social-icons";
+import { Facebook, Github, LinkedIn, Mail } from "@/assets/svg/social-icons";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import Link from "next/link";
 
 export default function ContactSection() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    setLoading(true);
+    setFeedback(null);
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+      setFeedback({ type: "success", message: "Message sent successfully!" });
+      formRef.current.reset();
+    } catch {
+      setFeedback({ type: "error", message: "Oops! Something went wrong." });
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -42,63 +74,90 @@ export default function ContactSection() {
             </div>
 
             <div className='flex gap-4 mt-5'>
-              <Button
-                variant='outline'
-                size='icon'
-                className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
+              <Link href='https://github.com/rahatsikz' target='_blank'>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
+                >
+                  <Github className='h-5 w-5 fill-slate-800' />
+                  <span className='sr-only'>GitHub</span>
+                </Button>
+              </Link>
+              <Link
+                href='https://www.linkedin.com/in/rahatsikz'
+                target='_blank'
               >
-                <Github className='h-5 w-5 fill-slate-800' />
-                <span className='sr-only'>GitHub</span>
-              </Button>
-              <Button
-                variant='outline'
-                size='icon'
-                className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
-              >
-                <Facebook className='h-5 w-5 fill-blue-700' />
-                <span className='sr-only'>LinkedIn</span>
-              </Button>
-              <Button
-                variant='outline'
-                size='icon'
-                className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
-              >
-                <XIcon className='h-5 w-5 fill-slate-800' />
-                <span className='sr-only'>Twitter</span>
-              </Button>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
+                >
+                  <LinkedIn className='h-5 w-5 fill-slate-800' />
+                  <span className='sr-only'>LinkedIn</span>
+                </Button>
+              </Link>
+              <Link href='https://www.facebook.com/rahatsikz' target='_blank'>
+                <Button
+                  variant='outline'
+                  size='icon'
+                  className='rounded-full bg-gray-300 border-gray-600 hover:shadow-2xl'
+                >
+                  <Facebook className='h-5 w-5 fill-blue-700' />
+                  <span className='sr-only'>Facebook</span>
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className='space-y-4'>
+        <div className='space-y-3'>
           <h3 className='text-yellow-300 text-lg'>Send a Message</h3>
-          <form className='space-y-4'>
-            <div className='space-y-2'>
-              <Input
-                type='text'
-                placeholder='Name'
-                className='bg-gray-700 border-gray-600 focus-visible:ring-green-500'
-              />
-            </div>
-            <div className='space-y-2'>
-              <Input
-                type='email'
-                placeholder='Email'
-                className='bg-gray-700 border-gray-600 focus-visible:ring-green-500'
-              />
-            </div>
-            <div className='space-y-2'>
-              <Textarea
-                placeholder='Message'
-                className='bg-gray-700 border-gray-600 focus-visible:ring-green-500 min-h-20 resize-none'
-              />
-            </div>
+          <form ref={formRef} onSubmit={handleSubmit} className='space-y-4'>
+            <Input
+              name='user_name'
+              type='text'
+              placeholder='Name'
+              required
+              className='bg-gray-700 border-gray-600 rounded-sm focus-visible:ring-green-500'
+            />
+            <Input
+              name='user_email'
+              type='email'
+              placeholder='Email'
+              required
+              className='bg-gray-700 border-gray-600 rounded-sm focus-visible:ring-green-500'
+            />
+            <Textarea
+              name='message'
+              placeholder='Message'
+              required
+              className='bg-gray-700 border-gray-600 rounded-sm focus-visible:ring-green-500 min-h-16 resize-none'
+            />
+
+            {feedback && (
+              <p
+                className={`text-sm ${
+                  feedback.type === "success"
+                    ? "text-green-400"
+                    : "text-red-400"
+                }`}
+              >
+                {feedback.message}
+              </p>
+            )}
+
             <Button
               type='submit'
-              className='w-full gap-2 bg-green-600 hover:bg-green-700'
+              disabled={loading}
+              className={`w-full gap-2 rounded-sm ${
+                loading
+                  ? "opacity-50 cursor-not-allowed"
+                  : "bg-green-600 hover:bg-green-700"
+              }`}
             >
               <Send className='h-4 w-4' />
-              <span>Send Message</span>
+              <span>{loading ? "Sending..." : "Send Message"}</span>
             </Button>
           </form>
         </div>

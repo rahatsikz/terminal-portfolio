@@ -8,9 +8,9 @@ export default function AboutSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className='space-y-4'
+      className='flex flex-col gap-4'
     >
-      <div className='text-green-400 text-xl font-bold mb-4 mt-5 pl-0.5'>
+      <div className='text-yellow-300 text-2xl font-semibold mt-3 pl-0.5'>
         About Me
       </div>
 
@@ -18,17 +18,17 @@ export default function AboutSection() {
         I started my development journey in 2017 and switched to the JavaScript
         stack in 2022, bringing fresh energy to modern development. I specialize
         in building clean, responsive UIs with TypeScript and React, making sure
-        they don’t just look good but feel right. I have worked remotely as a
-        Full Stack Developer for a US-based startup, focusing on SaaS products
-        and scalable solutions. Currently, I am working as a Software
-        Development Lead on a contract basis for a local startup, driving
-        projects and guiding the team.
+        they don&apos;t just look good but feel right. I have worked remotely as
+        a Full Stack Developer for a US-based startup, focusing on SaaS products
+        and scalable solutions. Currently, I am working as a Full stack
+        Developer on a contract basis for a Indian company, driving projects and
+        guiding the team.
       </p>
 
       <p className='text-gray-300 text-pretty mb-6'>
         I thrive on teamwork and staying sharp in the fast-moving dev world.
         While I&apos;m open to exploring different databases, I have a soft spot
-        for RDBMS over NoSQL — there’s just something satisfying about
+        for RDBMS over NoSQL — there&apos;s just something satisfying about
         well-organized data.
       </p>
 
@@ -63,8 +63,8 @@ export default function AboutSection() {
       </div>
 
       <p className='text-gray-400 text-sm italic mt-6'>
-        Type &apos;cd skills&apos; to see my technical expertise or
-        &apos;cd projects&apos; to view my work.
+        Type &apos;cd skills&apos; to see my technical expertise or &apos;cd
+        projects&apos; to view my work.
       </p>
     </motion.div>
   );

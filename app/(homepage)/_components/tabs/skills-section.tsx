@@ -1,31 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiRedis,
+  SiPrisma,
+  SiReactquery,
+  SiRedux,
+  SiShadcnui,
+  SiJavascript,
+  SiExpo,
+} from "react-icons/si";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 
 export default function SkillsSection() {
-  const frontendSkills = [
-    { name: "React", level: 90 },
-    { name: "Next.js", level: 95 },
-    { name: "TypeScript", level: 85 },
-    { name: "HTML/CSS", level: 80 },
-    { name: "Tailwind CSS", level: 90 },
+  const frontendIcons = [
+    { Icon: SiReact, name: "React" },
+    { Icon: SiNextdotjs, name: "Next.js" },
+    { Icon: SiJavascript, name: "JavaScript" },
+    { Icon: SiTypescript, name: "TypeScript" },
+    { Icon: SiHtml5, name: "HTML5" },
+    { Icon: SiCss3, name: "CSS3" },
+    { Icon: SiRedux, name: "Redux" },
+    { Icon: SiTailwindcss, name: "Tailwind" },
+    { Icon: SiReactquery, name: "TanStack Query" },
+    { Icon: SiShadcnui, name: "Shadcn UI" },
+    { Icon: SiReact, name: "React Native" },
+    { Icon: SiExpo, name: "Expo" },
   ];
 
-  const backendSkills = [
-    { name: "Node.js", level: 85 },
-    { name: "Express", level: 90 },
-    { name: "MongoDB", level: 75 },
-    { name: "PostgreSQL", level: 90 },
-    { name: "Redis", level: 70 },
-    { name: "Prisma", level: 80 },
+  const backendIcons = [
+    { Icon: SiNodedotjs, name: "Node.js" },
+    { Icon: SiExpress, name: "Express" },
+    { Icon: SiMongodb, name: "MongoDB" },
+    { Icon: SiPostgresql, name: "PostgreSQL" },
+    { Icon: SiRedis, name: "Redis" },
+    { Icon: SiPrisma, name: "Prisma" },
   ];
 
   const otherSkills = [
-    "Redux",
     "Zustand",
-    "Tanstack Query",
     "RTK Query",
     "D3.js",
     "RESTful APIs",
@@ -35,7 +58,7 @@ export default function SkillsSection() {
     "CI/CD",
     "Figma",
     "Responsive Design",
-    "Performance Optimization",
+    "Performance Opt.",
   ];
 
   return (
@@ -43,45 +66,52 @@ export default function SkillsSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className='space-y-6'
+      className='space-y-8'
     >
-      <div className='text-green-400 text-xl font-bold mb-5 mt-4'>
-        Technical Skills
-      </div>
-
-      <div className='space-y-5'>
-        <h3 className='text-yellow-300 text-lg'>Frontend Development</h3>
-        <div className='space-y-5'>
-          {frontendSkills.map((skill) => (
-            <div key={skill.name} className='space-y-2.5'>
-              <div className='flex justify-between'>
-                <span className='text-gray-300'>{skill.name}</span>
-                <span className='text-gray-400'>{skill.level}%</span>
-              </div>
-              <Progress value={skill.level} className='h-2' />
+      {/* ── Frontend Icons ── */}
+      <div className='space-y-4 mt-4'>
+        <h3 className='text-yellow-300 text-xl font-semibold'>
+          Frontend Development
+        </h3>
+        <div className='flex flex-wrap gap-5'>
+          {frontendIcons.map(({ Icon, name }) => (
+            <div
+              key={name}
+              className='flex flex-col items-center w-[116px] h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
+            >
+              <Icon size={32} className='text-emerald-500' />
+              <span className='mt-2.5 text-gray-300 text-sm text-center'>
+                {name}
+              </span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className='space-y-5'>
-        <h3 className='text-yellow-300 text-lg'>Backend Development</h3>
-        <div className='space-y-5'>
-          {backendSkills.map((skill) => (
-            <div key={skill.name} className='space-y-2.5'>
-              <div className='flex justify-between'>
-                <span className='text-gray-300'>{skill.name}</span>
-                <span className='text-gray-400'>{skill.level}%</span>
-              </div>
-              <Progress value={skill.level} className='h-2' />
-            </div>
-          ))}
-        </div>
-      </div>
-
+      {/* ── Backend Icons ── */}
       <div className='space-y-4'>
-        <h3 className='text-yellow-300 text-lg'>Other Skills</h3>
-        <div className='flex flex-wrap gap-2'>
+        <h3 className='text-yellow-300 text-xl font-semibold'>
+          Backend Development
+        </h3>
+        <div className='flex flex-wrap gap-5'>
+          {backendIcons.map(({ Icon, name }) => (
+            <div
+              key={name}
+              className='flex flex-col items-center w-[116px] h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
+            >
+              <Icon size={32} className='text-emerald-500' />
+              <span className='mt-2 text-gray-300 text-sm text-center'>
+                {name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Other Skills Badges ── */}
+      <div className='space-y-3'>
+        <h3 className='text-yellow-300 text-xl font-semibold'>Other Skills</h3>
+        <div className='flex flex-wrap gap-3'>
           {otherSkills.map((skill) => (
             <Badge
               key={skill}
@@ -94,6 +124,7 @@ export default function SkillsSection() {
         </div>
       </div>
 
+      {/* ── NPM List (keep as-is) ── */}
       <div className='bg-gray-800 p-4 rounded border border-gray-700'>
         <pre className='text-gray-300 whitespace-pre-wrap'>
           {`$ npm list --depth=0

@@ -4,10 +4,11 @@ import ContactSection from "./tabs/contact-section";
 import HomeSection from "./tabs/home-section";
 import ProjectsSection from "./tabs/projects-section";
 import SkillsSection from "./tabs/skills-section";
+import ExperienceSection from "./tabs/experience-section";
 
 export const dummyData = {
   home: {
-    command: null,
+    command: "cd ~/home",
     component: <HomeSection />,
   },
   about: {
@@ -22,6 +23,10 @@ export const dummyData = {
     command: "cd ~/projects",
     component: <ProjectsSection />,
   },
+  experience: {
+    command: "cd ~/experience",
+    component: <ExperienceSection />,
+  },
   contact: {
     command: "cd ~/contact",
     component: <ContactSection />,
@@ -30,9 +35,6 @@ export const dummyData = {
 
 export const renderTabContent = (activeTab: keyof typeof dummyData) => {
   switch (activeTab) {
-    case "home":
-      return dummyData[activeTab].component;
-
     default:
       return (
         <div className='p-4'>
