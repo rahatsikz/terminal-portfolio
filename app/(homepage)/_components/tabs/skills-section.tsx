@@ -58,7 +58,8 @@ export default function SkillsSection() {
     "CI/CD",
     "Figma",
     "Responsive Design",
-    "Performance Opt.",
+    "Performance Optimization",
+    "Kafka",
   ];
 
   return (
@@ -73,14 +74,15 @@ export default function SkillsSection() {
         <h3 className='text-yellow-300 text-xl font-semibold'>
           Frontend Development
         </h3>
-        <div className='flex flex-wrap gap-5'>
+        {/* <div className='flex flex-wrap gap-3 md:gap-5'> */}
+        <div className='grid grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
           {frontendIcons.map(({ Icon, name }) => (
             <div
               key={name}
-              className='flex flex-col items-center w-[116px] h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
+              className='flex flex-col items-center gap-1  h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
             >
               <Icon size={32} className='text-emerald-500' />
-              <span className='mt-2.5 text-gray-300 text-sm text-center'>
+              <span className='mt-2.5 text-gray-300 text-sm text-center leading-tight break-words w-full'>
                 {name}
               </span>
             </div>
@@ -93,14 +95,15 @@ export default function SkillsSection() {
         <h3 className='text-yellow-300 text-xl font-semibold'>
           Backend Development
         </h3>
-        <div className='flex flex-wrap gap-5'>
+        {/* <div className='flex flex-wrap gap-5'> */}
+        <div className='grid grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4'>
           {backendIcons.map(({ Icon, name }) => (
             <div
               key={name}
-              className='flex flex-col items-center w-[116px] h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
+              className='flex flex-col items-center gap-1 h-[106px] justify-center p-2 bg-gray-800 rounded border border-gray-700'
             >
               <Icon size={32} className='text-emerald-500' />
-              <span className='mt-2 text-gray-300 text-sm text-center'>
+              <span className='mt-2 text-gray-300 text-sm text-center leading-tight break-words w-full'>
                 {name}
               </span>
             </div>

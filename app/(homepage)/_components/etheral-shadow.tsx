@@ -186,7 +186,7 @@ export function EtherealShadow({
       </div>
 
       <div
-        className='flex justify-center items-center h-full w-full'
+        className='flex justify-center items-center h-full w-full p-2'
         style={{
           position: "absolute",
           //   top: "50%",
