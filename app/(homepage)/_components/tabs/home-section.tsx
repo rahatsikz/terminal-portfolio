@@ -77,7 +77,7 @@ export default function HomeSection() {
           <li>❓ Type &apos;help&apos; to list all commands.</li>
         </ul>
         <p className='mt-4 text-green-400 italic'>
-          # Code is my craft. Story is my superpower.
+          # Code is my craft. UI is my playground.
         </p>
 
         {/* <p className='text-gray-400 text-sm italic lg:px-4 px-2 mt-2'>
