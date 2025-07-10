@@ -51,7 +51,7 @@ export default function ProjectsSection() {
               </div>
 
               {/* Content Section */}
-              <div className='md:w-2/3 flex flex-col justify-between px-3.5 py-0 md:py-6'>
+              <div className='md:w-2/3 flex flex-col justify-between px-3.5 py-0 max-md:pb-5 md:py-6'>
                 <div>
                   <CardHeader className='p-0'>
                     <CardTitle className='text-gray-200 leading-6 text-pretty'>
