@@ -45,11 +45,11 @@ export default function ExperienceSection() {
 
             {/* Content */}
             <div>
-              <div className='flex flex-col md:flex-row md:justify-between md:items-center mb-1'>
+              <div className='flex flex-col md:flex-row md:justify-between md:items-center mb-1.5'>
                 <h3 className='text-green-400 text-lg font-semibold'>
                   {exp.title}
                 </h3>
-                <span className='text-sm text-gray-500 mt-1 md:mt-0'>
+                <span className='text-sm text-gray-500 '>
                   {exp.date}
                 </span>
               </div>
